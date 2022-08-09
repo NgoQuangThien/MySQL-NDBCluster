@@ -1,0 +1,55 @@
+### ROOT ###
+sudo apt --fix-broken install
+
+1.	MySQLd Nodes and Data Nodes ###
+vim /etc/my.cnf
+'''
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+
+[mysql_cluster]
+# Options for NDB Cluster processes:
+ndb-connectstring=10.10.0.187  # location of management server
+'''
+
+2.	NDB Management Nodes
+mkdir /var/lib/mysql-cluster
+cd /var/lib/mysql-cluster
+vi config.ini
+'''
+[ndbd default]
+# Options affecting ndbd processes on all data nodes:
+NoOfReplicas=2    # Number of fragment replicas
+DataMemory=98M    # How much memory to allocate for data storage
+
+[ndb_mgmd]
+# Management process options:
+HostName=198.51.100.10          # Hostname or IP address of management node
+DataDir=/var/lib/mysql-cluster  # Directory for management node log files
+
+[ndbd]
+# Options for data node "A":
+                                # (one [ndbd] section per data node)
+HostName=198.51.100.30          # Hostname or IP address
+NodeId=2                        # Node ID for this data node
+DataDir=/usr/local/mysql/data   # Directory for this data node's data files
+
+[ndbd]
+# Options for data node "B":
+HostName=198.51.100.40          # Hostname or IP address
+NodeId=3                        # Node ID for this data node
+DataDir=/usr/local/mysql/data   # Directory for this data node's data files
+
+[mysqld]
+# SQL node options:
+HostName=198.51.100.20          # Hostname or IP address
+                                # (additional mysqld connections can be
+                                # specified for this node for various
+                                # purposes such as running ndb_restore)
+'''
+
+3.	Inital Startup of NDB Cluster
+3.1.	DBBManagement Nodes
+ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
+3.2.	Data Nodes
