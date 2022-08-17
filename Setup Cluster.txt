@@ -1,5 +1,25 @@
+###	Dependency	###
+1. Data Node
+sudo apt-get install libclass-methodmaker-perl
+2. SQL Node
+sudo apt-get install libaio1 libmecab2
+
 ### ROOT ###
 sudo apt --fix-broken install
+
+###	Install Packages	###
+1. Data+SQL Node
+sudo dpkg -i mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
+mysql-common_8.0.30-1ubuntu20.04_amd64.deb
+mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
+mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb
+mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb
+mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb
+mysql-client_8.0.30-1ubuntu20.04_amd64.deb
+mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
+mysql-server_8.0.30-1ubuntu20.04_amd64.deb
+
+2. Management Node
 
 1.	MySQLd Nodes and Data Nodes ###
 vim /etc/my.cnf
