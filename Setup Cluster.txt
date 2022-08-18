@@ -7,6 +7,11 @@ sudo apt-get install libaio1 libmecab2
 ###	Install Packages	###
 1. Data+SQL Node
 mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
+
+2. Management Node
+mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
+
+3. SQL Node
 mysql-common_8.0.30-1ubuntu20.04_amd64.deb
 mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
 mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb
@@ -14,10 +19,8 @@ mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb
 mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb
 mysql-client_8.0.30-1ubuntu20.04_amd64.deb
 mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
-mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 
-2. Management Node
-mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
+mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 
 1.	Data Nodes ###
 vim /etc/my.cnf
@@ -25,7 +28,7 @@ vim /etc/my.cnf
 '''
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=10.10.0.187  # location of management server
+ndb-connectstring=10.10.0.188  # location of management server
 '''
 
 2.	MySQLd Nodes
@@ -38,7 +41,7 @@ ndbcluster                      # run NDB storage engine
 
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=10.10.0.187   # location of management server
+ndb-connectstring=10.10.0.188   # location of management server
 '''
 
 3.	NDB Management Nodes
@@ -68,12 +71,13 @@ DataDir=/usr/local/mysql/data   # Directory for this data node's data files
 [ndbd]
 # Options for data node "B":
 HostName=10.10.0.187            # Hostname or IP address
-NodeId=3                        # Node ID for this data node
+NodeId=12                       # Node ID for this data node
 DataDir=/usr/local/mysql/data   # Directory for this data node's data files
 
 [mysqld]
 # SQL node options:
 HostName=10.10.0.186            # Hostname or IP address
+NodeId=21
                                 # (additional mysqld connections can be
                                 # specified for this node for various
                                 # purposes such as running ndb_restore)
@@ -81,6 +85,7 @@ HostName=10.10.0.186            # Hostname or IP address
 [mysqld]
 # SQL node options:
 HostName=10.10.0.187            # Hostname or IP address
+NodeId=22
                                 # (additional mysqld connections can be
                                 # specified for this node for various
                                 # purposes such as running ndb_restore)
@@ -90,3 +95,5 @@ HostName=10.10.0.187            # Hostname or IP address
 3.1.	DBBManagement Nodes
 ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
 3.2.	Data Nodes
+ndbd
+
