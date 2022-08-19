@@ -12,6 +12,9 @@ mysqld_1        192.168.100.13
 mysqld_2        192.168.100.16
 EOF
 ```
+```
+git clone https://github.com/NgoQuangThien/MySQL-NDBCluster.git
+```
 ##	Management Node
 ```
 sudo dpki -i mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
