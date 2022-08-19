@@ -17,7 +17,7 @@ git clone https://github.com/NgoQuangThien/MySQL-NDBCluster.git
 ```
 ##	Management Node
 ```
-sudo dpki -i mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 mkdir -p /var/lib/mysql-cluster
@@ -158,7 +158,7 @@ sudo systemctl status ndb_mgmd
 sudo apt-get install libclass-methodmaker-perl
 ```
 ```
-sudo dpki -i mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 sudo vim /etc/my.cnf
@@ -213,18 +213,18 @@ sudo systemctl status ndbd
 sudo apt-get install libaio1 libmecab2
 ```
 ```
-sudo dpki -i mysql-common_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-common_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpki -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -i mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -i mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -i mysql-client_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-client_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpki -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -i mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -i mysql-server_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 sudo vim /etc/mysql/my.cnf
