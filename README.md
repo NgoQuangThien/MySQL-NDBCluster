@@ -221,7 +221,7 @@ sudo dpki -i mysql-client_8.0.30-1ubuntu20.04_amd64.deb
 ```
 sudo dpki -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
 sudo dpki -i mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpki -imysql-server_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpki -i mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 sudo vim /etc/mysql/my.cnf
