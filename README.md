@@ -166,7 +166,7 @@ sudo vim /etc/my.cnf
 ```
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=ndb_mgmd_1, ndb_mgmd_2  # location of management server
+ndb-connectstring=ndb_mgmd_1,ndb_mgmd_2  # location of management server
 ```
 ```
 sudo mkdir -p /usr/local/mysql/data
@@ -236,7 +236,7 @@ ndbcluster                      # run NDB storage engine
 
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=ndb_mgmd_1, ndb_mgmd_2  # location of management server
+ndb-connectstring=ndb_mgmd_1,ndb_mgmd_2  # location of management server
 ```
 ```
 sudo systemctl restart mysql
