@@ -49,7 +49,7 @@ LockPagesInMainMemory=1
 # processes into memory. Doing so prevents them from swapping to disk,
 # which can severely degrade cluster performance.
 
-DataMemory=3456M
+#DataMemory=3456M
 
 # The value provided for DataMemory assumes 4 GB RAM
 # per data node. However, for best results, you should first calculate
@@ -216,15 +216,10 @@ sudo apt-get install libaio1 libmecab2
 sudo dpkg -i mysql-common_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpkg -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpkg -i mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpkg -i mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpkg -i mysql-client_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb mysql-client_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpkg -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpkg -i mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb
-sudo dpkg -i mysql-server_8.0.30-1ubuntu20.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 sudo vim /etc/mysql/my.cnf
@@ -240,6 +235,9 @@ ndb-connectstring=ndb_mgmd_1,ndb_mgmd_2  # location of management server
 ```
 ```
 sudo systemctl restart mysql
+```
+```
+sudo systemctl status mysql
 ```
 ```
 sudo systemctl enable mysql
