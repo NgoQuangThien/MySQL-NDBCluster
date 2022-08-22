@@ -50,7 +50,7 @@ DataMemory=98M    # How much memory to allocate for data storage
 
 DataDir=/usr/local/mysql/data   # Directory for this data node`s data files
 
-#LockPagesInMainMemory=1
+LockPagesInMainMemory=1
 # On Linux and Solaris systems, setting this parameter locks data node
 # processes into memory. Doing so prevents them from swapping to disk,
 # which can severely degrade cluster performance.
@@ -65,7 +65,7 @@ DataDir=/usr/local/mysql/data   # Directory for this data node`s data files
 # you should ensure that each data node host has at least as much
 # physical memory as the sum of these two values.
 
-#ODirect=1
+ODirect=1
 # Enabling this parameter causes NDBCLUSTER to try using O_DIRECT
 # writes for local checkpoints and redo logs; this can reduce load on
 # CPUs. We recommend doing so when using NDB Cluster on systems running
