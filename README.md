@@ -2,14 +2,14 @@
 ##  All Node
 ```
 tee -a /etc/hosts <<EOF
-192.168.100.20          manager_1
-192.168.100.21          manager_2
+192.168.100.20          mgm_1
+192.168.100.21          mgm_2
 
-192.168.100.22          data_1
-192.168.100.23          data_2
+192.168.100.22          ndb_1
+192.168.100.23          ndb_2
 
-192.168.100.20          sql_1
-192.168.100.21          sql_2
+192.168.100.20          api_1
+192.168.100.21          api_2
 EOF
 ```
 ```
@@ -35,12 +35,12 @@ DataDir=/var/lib/mysql-cluster  # Directory for management node log files
 
 [ndb_mgmd]
 # Management process options:
-HostName=manager_1             # Hostname or IP address of management node
+HostName=mgm_1             # Hostname or IP address of management node
 NodeId=1                        # Node ID for this manage node
 
 [ndb_mgmd]
 # Management process options:
-HostName=manager_2             # Hostname or IP address of management node
+HostName=mgm_2             # Hostname or IP address of management node
 NodeId=2                        # Node ID for this manage node
 
 [ndbd default]
@@ -86,25 +86,25 @@ DataDir=/usr/local/mysql/data   # Directory for this data node`s data files
 # (one [ndbd] section per data node)
 [ndbd]
 # Options for data node "A":
-HostName=data_1                 # Hostname or IP address
+HostName=ndb_1                 # Hostname or IP address
 NodeId=11                       # Node ID for this data node
 
-LockExecuteThreadToCPU=1
-LockMaintThreadsToCPU=0
+#LockExecuteThreadToCPU=1
+#LockMaintThreadsToCPU=0
 # On systems with multiple CPUs, these parameters can be used to lock NDBCLUSTER
 # threads to specific CPUs
 
 [ndbd]
 # Options for data node "B":
-HostName=data_2                 # Hostname or IP address
+HostName=ndb_2                 # Hostname or IP address
 NodeId=12                       # Node ID for this data node
 
-LockExecuteThreadToCPU=1
-LockMaintThreadsToCPU=0
+#LockExecuteThreadToCPU=1
+#LockMaintThreadsToCPU=0
 
 [mysqld]
 # SQL node options:
-HostName=sql_1               # Hostname or IP address
+HostName=api_1               # Hostname or IP address
 NodeId=21                       # Node ID for this sql node
                                 # (additional mysqld connections can be
                                 # specified for this node for various
@@ -112,7 +112,7 @@ NodeId=21                       # Node ID for this sql node
 
 [mysqld]
 # SQL node options:
-HostName=sql_2               # Hostname or IP address
+HostName=api_2               # Hostname or IP address
 NodeId=22                       # Node ID for this sql node
                                 # (additional mysqld connections can be
                                 # specified for this node for various
@@ -168,7 +168,7 @@ sudo nano /etc/my.cnf
 ```
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=manager_1,manager_2  # location of management server
+ndb-connectstring=mgm_1,mgm_2  # location of management server
 ```
 ```
 sudo mkdir -p /usr/local/mysql/data
@@ -233,7 +233,7 @@ ndbcluster                      # run NDB storage engine
 
 [mysql_cluster]
 # Options for NDB Cluster processes:
-ndb-connectstring=manager_1,manager_2  # location of management server
+ndb-connectstring=mgm_1,mgm_2  # location of management server
 ```
 ```
 sudo systemctl restart mysql
