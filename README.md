@@ -17,7 +17,7 @@ git clone https://github.com/NgoQuangThien/MySQL-NDBCluster.git
 ```
 ##	Management Node
 ```
-sudo dpkg -i mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
+dpkg -i mysql-cluster-community-management-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
 mkdir -p /var/lib/mysql-cluster
@@ -122,10 +122,10 @@ NodeId=22                       # Node ID for this sql node
 ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
 ```
 ```
-sudo pkill -f ndb_mgmd
+pkill -f ndb_mgmd
 ```
 ```
-sudo nano /etc/systemd/system/ndb_mgmd.service
+nano /etc/systemd/system/ndb_mgmd.service
 ```
 ```
 [Unit]
@@ -143,27 +143,27 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 ```
-sudo systemctl daemon-reload
+systemctl daemon-reload
 ```
 ```
-sudo systemctl enable ndb_mgmd
+systemctl enable ndb_mgmd
 ```
 ```
-sudo systemctl start ndb_mgmd
+systemctl start ndb_mgmd
 ```
 ```
-sudo systemctl status ndb_mgmd
+systemctl status ndb_mgmd
 ```
 
 ##  Data Node
 ```
-sudo apt-get install libclass-methodmaker-perl
+apt-get install libclass-methodmaker-perl
 ```
 ```
-sudo dpkg -i mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
+dpkg -i mysql-cluster-community-data-node_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo nano /etc/my.cnf
+nano /etc/my.cnf
 ```
 ```
 [mysql_cluster]
@@ -171,16 +171,16 @@ sudo nano /etc/my.cnf
 ndb-connectstring=mgm_1,mgm_2  # location of management server
 ```
 ```
-sudo mkdir -p /usr/local/mysql/data
+mkdir -p /usr/local/mysql/data
 ```
 ```
-sudo ndbd
+ndbd
 ```
 ```
-sudo pkill -f ndbd
+pkill -f ndbd
 ```
 ```
-sudo nano /etc/systemd/system/ndbd.service
+nano /etc/systemd/system/ndbd.service
 ```
 ```
 [Unit]
@@ -198,35 +198,37 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 ```
-sudo systemctl daemon-reload
+systemctl daemon-reload
 ```
 ```
-sudo systemctl enable ndbd
+systemctl enable ndbd
 ```
 ```
-sudo systemctl start ndbd
+systemctl start ndbd
 ```
 ```
-sudo systemctl status ndbd
+systemctl status ndbd
 ```
 
 ##  SQL Node
 ```
-sudo apt-get install libaio1 libmecab2
+apt-get install libaio1 libmecab2
 ```
 ```
-sudo dpkg -i mysql-common_8.0.30-1ubuntu20.04_amd64.deb
+dpkg -i mysql-common_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpkg -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb mysql-client_8.0.30-1ubuntu20.04_amd64.deb
+dpkg -i mysql-cluster-community-client-plugins_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-client_8.0.30-1ubuntu20.04_amd64.deb mysql-client_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo dpkg -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb mysql-server_8.0.30-1ubuntu20.04_amd64.deb
+dpkg -i mysql-cluster-community-server-core_8.0.30-1ubuntu20.04_amd64.deb mysql-cluster-community-server_8.0.30-1ubuntu20.04_amd64.deb mysql-server_8.0.30-1ubuntu20.04_amd64.deb
 ```
 ```
-sudo nano /etc/mysql/my.cnf
+nano /etc/mysql/my.cnf
 ```
 ```
+default_storage_engine=NDBCLUSTER
+
 [mysqld]
 # Options for mysqld process:
 ndbcluster                      # run NDB storage engine
@@ -236,13 +238,13 @@ ndbcluster                      # run NDB storage engine
 ndb-connectstring=mgm_1,mgm_2  # location of management server
 ```
 ```
-sudo systemctl restart mysql
+systemctl restart mysql
 ```
 ```
-sudo systemctl status mysql
+systemctl status mysql
 ```
 ```
-sudo systemctl enable mysql
+systemctl enable mysql
 ```
 
 ##  Verifying MySQL Cluster Installation
